@@ -1,11 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 interface AgeStepProps {
-  cb: (field: string, value: number) => void
+  cb: (field: string, value: number) => void;
 }
 
-const AgeStep: React.FC<AgeStepProps> = (props) => {
-  const [age, setAge] = useState(0)
+const AgeStep: React.FC<AgeStepProps> = ({ cb }) => {
+  const [age, setAge] = useState<number | ''>(0);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleNext = () => {
+    if (age === '' || age <= 0 || isNaN(age)) {
+      setError('Please enter a valid age');
+    } else {
+      setError(null);
+      cb('age', Number(age));
+    }
+  };
+
   return (
     <>
       <div>
@@ -13,14 +24,23 @@ const AgeStep: React.FC<AgeStepProps> = (props) => {
         <input
           type="number"
           onChange={({ target: { value } }) => {
-            setAge(Number(value))
+            setAge(value ? Number(value): '');
+            setError(null);
           }}
           value={age}
-        ></input>
+          aria-label="Enter your age"
+          aria-invalid={!!error}
+          aria-describedby={error ? 'age-error' : ''}
+        />
+        {error && (
+          <p id="age-error" style={{ color: 'red' }} role="alert">
+            {error}
+          </p>
+        )}
       </div>
-      <button onClick={() => props.cb('age', age)}>Next</button>
+      <button onClick={handleNext}>Next</button>
     </>
-  )
-}
+  );
+};
 
-export default AgeStep
+export default AgeStep;

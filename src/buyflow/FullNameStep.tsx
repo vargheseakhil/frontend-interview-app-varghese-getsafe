@@ -1,37 +1,59 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 interface FullNameStepProps {
-  cb: (field: string, value: string) => void
+  cb: (field: string, value: string) => void;
 }
 
-const FullNameStep: React.FC<FullNameStepProps> = (props) => {
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
+const FullNameStep: React.FC<FullNameStepProps> = ({ cb }) => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [error, setError] = useState<string | null>(null);
+
+  const handleNext = () => {
+    if (!firstName.trim() || !lastName.trim()) {
+      setError('Please enter both first and last names');
+    } else {
+      setError(null);
+      cb('name', `${firstName.trim()} ${lastName.trim()}`);
+    }
+  };
+
   return (
     <>
       <div>
         First Name:{' '}
         <input
           type="text"
+          placeholder="Enter your first name"
           onChange={({ target: { value } }) => {
-            setFirstName(String(value))
+            setFirstName(value);
+            setError(null);
           }}
           value={firstName}
-        ></input>
+          aria-label="Enter your first name"
+        />
       </div>
       <div>
         Last Name:{' '}
         <input
           type="text"
+          placeholder="Enter your last name"
           onChange={({ target: { value } }) => {
-            setLastName(String(value))
+            setLastName(value);
+            setError(null);
           }}
           value={lastName}
-        ></input>
+          aria-label="Enter your last name"
+        />
       </div>
-      <button onClick={() => props.cb('name', `${firstName} ${lastName}`)}>Next</button>
+      {error && (
+        <p style={{ color: 'red' }} role="alert">
+          {error}
+        </p>
+      )}
+      <button onClick={handleNext}>Next</button>
     </>
-  )
-}
+  );
+};
 
-export default FullNameStep
+export default FullNameStep;

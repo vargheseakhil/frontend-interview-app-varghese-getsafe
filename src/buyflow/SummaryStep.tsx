@@ -14,10 +14,10 @@ interface SummaryStepProps {
 const SummaryStep: React.FC<SummaryStepProps> = ({collectedData, projectId}) => {
   return (
     <>
-      <div>Email: {collectedData.email}</div>
-      <div>Age: {collectedData.age}</div>
+      <p>Email: {collectedData.email}</p>
+      <p>Age: {collectedData.age}</p>
       {
-        collectedData.name && <div>Name: {collectedData.name}</div>
+        collectedData.name && <p>Name: {collectedData.name}</p>
       }
       <div>
         <Link to={`/purchased=${projectId}`}>Purchase</Link>

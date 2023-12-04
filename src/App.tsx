@@ -1,7 +1,7 @@
 import logo from './logo.svg'
 import './App.css'
 import { BrowserRouter as Router, Switch , Route } from 'react-router-dom'
-import Buyflow, { ProductIds } from './buyflow/BuyFlow'
+import Buyflow from './buyflow/BuyFlow'
 import LandingPage from './Landing/LandingPage'
 
 const App = () => {
@@ -12,8 +12,8 @@ const App = () => {
           <img src={logo} className="App-logo" alt="logo" />
         </header>
         <Switch>
-          <Route path="/buy/insurance_dev">
-            <Buyflow productId={ProductIds.devIns} />
+          <Route path="/buy/:projectId">
+            <Buyflow/>
           </Route>
           <Route path="/">
             <LandingPage />

@@ -1,20 +1,26 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { ProductIds } from './BuyFlow'
 
 interface SummaryStepProps {
   collectedData: {
     email: string
-    age: number
-  }
+    age: number,
+    name?: string
+  },
+  projectId: ProductIds
 }
 
-const SummaryStep: React.FC<SummaryStepProps> = (props) => {
+const SummaryStep: React.FC<SummaryStepProps> = ({collectedData, projectId}) => {
   return (
     <>
-      <div>Email: {props.collectedData.email}</div>
-      <div>Age: {props.collectedData.age}</div>
+      <div>Email: {collectedData.email}</div>
+      <div>Age: {collectedData.age}</div>
+      {
+        collectedData.name && <div>Name: {collectedData.name}</div>
+      }
       <div>
-        <Link to="/purchased=dev_ins">Purchase</Link>
+        <Link to={`/purchased=${projectId}`}>Purchase</Link>
       </div>
     </>
   )

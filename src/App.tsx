@@ -1,8 +1,8 @@
 import logo from './logo.svg'
 import './App.css'
 import { BrowserRouter as Router, Switch , Route } from 'react-router-dom'
-import Buyflow from './buyflow/BuyFlow'
-import LandingPage from './Landing/LandingPage'
+import { Buyflow } from './buyflow'
+import { LandingPage } from './landing'
 
 const App = () => {
   return (

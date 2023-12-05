@@ -4,16 +4,7 @@ import EmailStep from './EmailStep'
 import SummaryStep from './SummaryStep'
 import { useParams } from 'react-router-dom'
 import FullNameStep from './FullNameStep'
-
-export enum ProductIds {
-  devIns = 'dev_ins',
-  uxIns = 'ux_ins',
-}
-
-const PRODUCT_IDS_TO_NAMES = {
-  [ProductIds.devIns]: 'Developer Insurance',
-  [ProductIds.uxIns]: 'Designer Insurance',
-}
+import { PRODUCT_IDS_TO_NAMES, ProductIds } from '../data/ProductTypes'
 
 const Buyflow: React.FC = () => {
   const { projectId } = useParams<{ projectId: ProductIds }>();

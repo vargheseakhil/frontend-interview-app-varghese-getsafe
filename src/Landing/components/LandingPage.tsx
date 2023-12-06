@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { PRODUCT_IDS_TO_NAMES, ProductIds } from '../../buyflow';
+import { PRODUCT_IDS_TO_NAMES } from '../../buyflow';
 
 const LandingPage: React.FC = () => {
   return (

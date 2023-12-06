@@ -32,6 +32,7 @@ const EmailStep: React.FC<EmailStepProps> = ({ cb }) => {
           Email:{' '}
         </label>
         <input
+          id='email-input'
           type="email"
           placeholder="Enter your email"
           onChange={({ target: { value } }) => {

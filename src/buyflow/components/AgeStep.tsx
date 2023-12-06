@@ -24,6 +24,7 @@ const AgeStep: React.FC<AgeStepProps> = ({ cb }) => {
           Age:{' '}
         </label>
         <input
+          id='age-input'
           type="number"
           onChange={({ target: { value } }) => {
             setAge(value ? Number(value): '');

@@ -14,7 +14,7 @@ const SummaryStep: React.FC<SummaryStepProps> = ({ collectedData, productId }) =
         {Object.entries(collectedData).map(([key, value]) => 
           value && (
             <div key={key} className="summary-item">
-              <span className='summary-label'>{insuranceStepDetails[key][0]?.title}</span>: {value}
+              <span className='summary-label'>{insuranceStepDetails[key][0]?.title}</span> : {value}
             </div>
           )
         )}

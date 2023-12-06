@@ -21,7 +21,7 @@ export interface InsuranceStep {
       // Add more steps as needed
     ],
     name: [
-      { title: 'Full name of the buyer ', component: FullNameStep },
+      { title: 'Full name of the buyer', component: FullNameStep },
       // Add more steps as needed
     ],
     // Define steps to components for other insurances

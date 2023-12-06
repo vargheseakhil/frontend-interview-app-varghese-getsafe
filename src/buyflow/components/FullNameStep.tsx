@@ -25,6 +25,7 @@ const FullNameStep: React.FC<FullNameStepProps> = ({ cb }) => {
           First Name:{' '}
         </label>
         <input
+          id='firstname-input'
           type="text"
           placeholder="Enter your first name"
           onChange={({ target: { value } }) => {
@@ -40,6 +41,7 @@ const FullNameStep: React.FC<FullNameStepProps> = ({ cb }) => {
         Last Name:{' '}
        </label>
         <input
+          id="lastname-input"
           type="text"
           placeholder="Enter your last name"
           onChange={({ target: { value } }) => {

@@ -13,15 +13,15 @@ export interface InsuranceStep {
   
   export const insuranceStepDetails: InsuranceStepsMap = {
     email: [
-      { title: 'Step 1: Personal Email', component: EmailStep },
+      { title: 'Personal Email', component: EmailStep },
       // Add more steps as needed
     ],
     age: [
-      { title: 'Step 2: Age of the buyer', component: AgeStep },
+      { title: 'Age of the buyer', component: AgeStep },
       // Add more steps as needed
     ],
     name: [
-      { title: 'Step 3: Full name of the buyer ', component: FullNameStep },
+      { title: 'Full name of the buyer ', component: FullNameStep },
       // Add more steps as needed
     ],
     // Define steps to components for other insurances

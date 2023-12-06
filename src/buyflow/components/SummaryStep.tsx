@@ -1,29 +1,25 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { ProductIds } from '../data/ProductTypes'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { ProductIds, insuranceStepDetails } from '../data';
 
 interface SummaryStepProps {
-  collectedData: {
-    email: string
-    age: number,
-    name?: string
-  },
-  projectId: ProductIds
+  collectedData: Record<string, string | number>
+  productId: ProductIds;
 }
 
-const SummaryStep: React.FC<SummaryStepProps> = ({collectedData, projectId}) => {
+const SummaryStep: React.FC<SummaryStepProps> = ({ collectedData, productId }) => {
   return (
     <>
-      <p>Email: {collectedData.email}</p>
-      <p>Age: {collectedData.age}</p>
-      {
-        collectedData.name && <p>Name: {collectedData.name}</p>
-      }
+      {Object.entries(collectedData).map(([key, value]) => 
+        value && <p key={key}> 
+          <span className='summary-label'>{insuranceStepDetails[key][0]?.title}</span> : {value}
+        </p> // Only show if value exists
+      )}
       <div>
-        <Link to={`/purchased=${projectId}`}>Purchase</Link>
+        <Link to={`/purchased=${productId}`}>Purchase</Link>
       </div>
     </>
-  )
+  );
 }
 
-export default SummaryStep
+export default SummaryStep;

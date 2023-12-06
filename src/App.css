@@ -48,7 +48,7 @@ input, select {
   margin: 8px;
 }
 
-.capitalize {
-    text-transform: capitalize;
+.summary-label {
+    font-weight: bold;
 }
 

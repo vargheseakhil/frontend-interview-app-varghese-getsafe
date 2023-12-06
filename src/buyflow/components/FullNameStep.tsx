@@ -21,7 +21,9 @@ const FullNameStep: React.FC<FullNameStepProps> = ({ cb }) => {
   return (
     <>
       <div>
-        First Name:{' '}
+        <label className="step-label" htmlFor="firstname-input">
+          First Name:{' '}
+        </label>
         <input
           type="text"
           placeholder="Enter your first name"
@@ -34,7 +36,9 @@ const FullNameStep: React.FC<FullNameStepProps> = ({ cb }) => {
         />
       </div>
       <div>
+       <label className="step-label" htmlFor="lastname-input">
         Last Name:{' '}
+       </label>
         <input
           type="text"
           placeholder="Enter your last name"
@@ -51,7 +55,7 @@ const FullNameStep: React.FC<FullNameStepProps> = ({ cb }) => {
           {error}
         </p>
       )}
-      <button onClick={handleNext}>Next</button>
+      <button className="next-btn" onClick={handleNext}>Next</button>
     </>
   );
 };

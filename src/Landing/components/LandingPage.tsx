@@ -1,26 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { PRODUCT_IDS_TO_NAMES, ProductIds } from '../../buyflow';
 
 const LandingPage: React.FC = () => {
-  const [selectedInsurance, setSelectedInsurance] = useState<ProductIds>(ProductIds.devIns);
-
-  const handleInsuranceChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedInsurance(event.target.value as ProductIds);
-  };
-
   return (
     <>
-      <p>Welcome to Getsafe's
-      <select value={selectedInsurance} onChange={handleInsuranceChange}>
-        {Object.entries(PRODUCT_IDS_TO_NAMES)?.map(([productId, productName]) => (
-          <option key={productId} value={productId}>
-            {productName}
-          </option>
+      <h2>Welcome to Getsafe's</h2>
+      <div className="plan-cards-container">
+        {Object.entries(PRODUCT_IDS_TO_NAMES).map(([productId, productName]) => (
+          <div className="plan-card" key={productId}>
+            <p>{productName}</p>
+            <Link to={`/buy/${productId}`} className="get-started-button">
+              Get started!
+            </Link>
+          </div>
         ))}
-      </select>
-      </p>
-      <Link to={`/buy/${selectedInsurance}`}>Get started!</Link>
+      </div>
     </>
   );
 };

@@ -9,17 +9,21 @@ interface SummaryStepProps {
 
 const SummaryStep: React.FC<SummaryStepProps> = ({ collectedData, productId }) => {
   return (
-    <>
-      {Object.entries(collectedData).map(([key, value]) => 
-        value && <p key={key}> 
-          <span className='summary-label'>{insuranceStepDetails[key][0]?.title}</span> : {value}
-        </p> // Only show if value exists
-      )}
-      <div>
-        <Link to={`/purchased=${productId}`}>Purchase</Link>
+    <div className="summary-container">
+      <div className="summary-list">
+        {Object.entries(collectedData).map(([key, value]) => 
+          value && (
+            <div key={key} className="summary-item">
+              <span className='summary-label'>{insuranceStepDetails[key][0]?.title}</span>: {value}
+            </div>
+          )
+        )}
       </div>
-    </>
+      <div>
+        <Link className="get-started-button" to={`/purchased=${productId}`}>Purchase</Link>
+      </div>
+    </div>
   );
-}
+};
 
 export default SummaryStep;

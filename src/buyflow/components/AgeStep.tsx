@@ -20,7 +20,9 @@ const AgeStep: React.FC<AgeStepProps> = ({ cb }) => {
   return (
     <>
       <div>
-        Age:{' '}
+        <label className="step-label" htmlFor="age-input">
+          Age:{' '}
+        </label>
         <input
           type="number"
           onChange={({ target: { value } }) => {
@@ -38,7 +40,7 @@ const AgeStep: React.FC<AgeStepProps> = ({ cb }) => {
           </p>
         )}
       </div>
-      <button onClick={handleNext}>Next</button>
+      <button className="next-btn" onClick={handleNext}>Next</button>
     </>
   );
 };

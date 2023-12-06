@@ -34,7 +34,7 @@ const Buyflow: FC = () => {
 
   return (
     <>
-      <h4>Buying {PRODUCT_IDS_TO_NAMES[productId]}</h4>
+      <h3 className='buy-flow-title'>Buying {PRODUCT_IDS_TO_NAMES[productId]}</h3>
           {currentStepIndex >= stepList.length ? (
             <SummaryStep collectedData={collectedData} productId={productId} />
           ) : (

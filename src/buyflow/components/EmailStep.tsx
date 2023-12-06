@@ -28,7 +28,9 @@ const EmailStep: React.FC<EmailStepProps> = ({ cb }) => {
   return (
     <>
       <div>
-        Email:{' '}
+        <label className="step-label" htmlFor="email-input">
+          Email:{' '}
+        </label>
         <input
           type="email"
           placeholder="Enter your email"
@@ -47,7 +49,7 @@ const EmailStep: React.FC<EmailStepProps> = ({ cb }) => {
           </p>
         )}
       </div>
-      <button onClick={handleNext}>Next</button>
+      <button className="next-btn" onClick={handleNext}>Next</button>
     </>
   );
 };

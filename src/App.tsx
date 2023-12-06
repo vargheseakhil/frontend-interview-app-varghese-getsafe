@@ -3,7 +3,7 @@ import logo from './logo.svg'
 import './App.css'
 import { BrowserRouter as Router, Switch , Route } from 'react-router-dom'
 import { Buyflow } from './buyflow'
-import { LandingPage } from './landing'
+import { LandingPage } from './welcome'
 
 const App = () => {
   return (

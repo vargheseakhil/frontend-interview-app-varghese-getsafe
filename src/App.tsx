@@ -1,3 +1,4 @@
+import React from 'react'
 import logo from './logo.svg'
 import './App.css'
 import { BrowserRouter as Router, Switch , Route } from 'react-router-dom'
@@ -12,7 +13,7 @@ const App = () => {
           <img src={logo} className="App-logo" alt="logo" />
         </header>
         <Switch>
-          <Route path="/buy/:projectId">
+          <Route path="/buy/:productId">
             <Buyflow/>
           </Route>
           <Route path="/">

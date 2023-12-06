@@ -1,38 +1,47 @@
-import React, { useState } from 'react'
-import AgeStep from './AgeStep'
-import EmailStep from './EmailStep'
-import SummaryStep from './SummaryStep'
-import { useParams } from 'react-router-dom'
-import FullNameStep from './FullNameStep'
-import { PRODUCT_IDS_TO_NAMES, ProductIds } from '../data/ProductTypes'
+import React, { FC, useState } from 'react';
+import { Redirect, useParams } from 'react-router-dom';
+import SummaryStep from './SummaryStep';
+import { 
+  ProductIds,
+  PRODUCT_IDS_TO_NAMES,
+  insuranceStepIdentification,
+  insuranceStepDetails 
+} from '../data';
 
-const Buyflow: React.FC = () => {
-  const { projectId } = useParams<{ projectId: ProductIds }>();
-  const [currentStep, setStep] = useState('email')
-  const [collectedData, updateData] = useState({
-    email: '',
-    age: 0,
-    name: ''
-  })
-  const getStepCallback = (nextStep: string) => (field: string, value: any) => {
-    updateData({ ...collectedData, [field]: value })
-    setStep(nextStep)
+const Buyflow: FC = () => {
+  const { productId } = useParams<{ productId: ProductIds }>();
+
+  // Retrieve the steps for the provided productId
+  const stepList = insuranceStepIdentification[productId];
+
+  const [collectedData, updateData] = useState({});
+  const [currentStepIndex, setStepIndex] = useState(0);
+
+
+  // Check if the productId is valid, if not, redirect to initial page
+  if (!Object.values(ProductIds).includes(productId)) {
+    return <Redirect to="/" />;
   }
+
+  const getStepCallback = () => (field: string, value: any) => {
+    updateData(prevData => ({ ...prevData, [field]: value }));
+    setStepIndex(currentStepIndex + 1);
+  }
+
+  // Get the component for the current step
+  const currentStep = insuranceStepDetails[stepList[currentStepIndex]];
+  const CurrentComponent = currentStep && currentStep[0]?.component;
+
   return (
     <>
-      <h4>Buying {PRODUCT_IDS_TO_NAMES[projectId]}</h4>
-      {(currentStep === 'email' && <EmailStep cb={getStepCallback('age')} />) ||
-        (currentStep === 'age' && (
-          <AgeStep cb={getStepCallback(projectId === 'ux_ins' ? 'name' : 'summary')} />
-        )) ||
-        (currentStep === 'name' && (
-          <FullNameStep cb={getStepCallback('summary')} />
-        )) || 
-        (currentStep === 'summary' && (
-          <SummaryStep collectedData={collectedData} projectId={projectId} />
-        ))}
+      <h4>Buying {PRODUCT_IDS_TO_NAMES[productId]}</h4>
+          {currentStepIndex >= stepList.length ? (
+            <SummaryStep collectedData={collectedData} productId={productId} />
+          ) : (
+            <CurrentComponent cb={getStepCallback()} />
+          )}
     </>
   )
 }
 
-export default Buyflow
+export default Buyflow;
